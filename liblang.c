@@ -8,16 +8,16 @@ char *getm(char *code) {
     if (strcmp(code, "_W_TITLE") == 0) {
         strcat(mess, _W_TITLE);
     }
-    if (strcmp(code, "_M_HELP") == 0) {
+    else if (strcmp(code, "_M_HELP") == 0) {
         strcat(mess, _M_HELP);
     }
-    if (strcmp(code, "_M_BCREATE") == 0) {
+    else if (strcmp(code, "_M_BCREATE") == 0) {
         strcat(mess, _M_BCREATE);
     }
-    if (strcmp(code, "_M_FEXIST") == 0) {
+    else if (strcmp(code, "_M_FEXIST") == 0) {
         strcat(mess, _M_FEXIST);
     }
-    if (strcmp(code, "_M_FCREATED") == 0) {
+    else if (strcmp(code, "_M_FCREATED") == 0) {
         strcat(mess, _M_FCREATED);
     }
     char* str = malloc(strlen(mess) + 1);
