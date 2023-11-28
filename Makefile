@@ -6,8 +6,8 @@ LDSTATIC = $(shell fltk-config --use-gl --ldstaticflags )
 LINK     = $(CXX)
  
 TARGET = lab
-OBJS = main.o window.o libmessage.o
-SRCS = main.cxx window.cpp libmessage.cpp
+OBJS = main.o window.o libmessage.o libtouch.o
+SRCS = main.cxx window.cpp libmessage.cpp libtouch.cpp
  
 .SUFFIXES: .o .cxx
 %.o: %.cxx
@@ -21,7 +21,7 @@ all: $(TARGET)
 	$(LINK) -o $(TARGET) $(OBJS) $(LDSTATIC)
 
 $(TARGET): $(OBJS)
-main.o: main.cxx window.cpp libmessage.cpp
+main.o: main.cxx window.cpp libmessage.cpp libtouch.cpp
 
 run: $(SRCS)
 	./$(TARGET)

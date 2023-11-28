@@ -1,4 +1,6 @@
+
 #include "window.h"
+#include "libtouch.h"
 
 
 void UItouch(Fl_Widget* b, void* te) {
@@ -9,12 +11,28 @@ void UItouch(Fl_Widget* b, void* te) {
     // get our struct
     FileData *filedata = (FileData *)te;
     // // get filepath input and results window from struct
-    Fl_Input *filepath = filedata->path;
+    Fl_Input *full_path = filedata->path;
     Fl_Multiline_Input *text_result = filedata->result;
-    text_result->value(filepath->value());
-    // // activate button and clear input box
+
+    char *err_message;
+    // create file
+    signed char err_code = touch(full_path->value());
+    switch(err_code) {
+        case 1:
+            err_message = get_message(mlib, "_M_FCREATED");
+            break;
+        case 0:
+            err_message = get_message(mlib, "_M_FEXIST");
+            break;
+        default:
+            err_message = get_message(mlib, "_M_UNKNOWN");
+    }
+    // show message
+    text_result->value(err_message);
+
+    // activate button and clear input box
     b->activate();
-    filepath->value("");
+    full_path->value("");
     // re-draw window
     Fl_Window *win = b->window();
     win->redraw();
